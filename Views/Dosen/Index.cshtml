@@ -1,0 +1,45 @@
+@model IEnumerable<SampleASPCore.Models.Dosen>
+@{
+    Layout = "_Layout";
+}
+ <h2>Daftar Dosen</h2><br/><br/>
+ <a asp-action="Create" class="btn btn-success">Tambah Data</a>
+ <br/>
+<div class="row">
+@if(ViewData["pesan"]!=null){
+    @Html.Raw(ViewData["pesan"])
+}
+<br/><br/>
+</div>
+<div class="row">
+
+    <form asp-action="Search" class="form-inline">
+        <div class="form-group">
+            <label>Search by :  </label> &nbsp;
+            <input type="radio" name="pilih" value="Nik" class="form-control"/>Nik  &nbsp;
+            <input type="radio" name="pilih" value="Nama" class="form-control"/>Nama  &nbsp;
+            <input type="text" name="keyword" class="form-control" placeholder="Masukkan Keyword" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form><br/><br/>
+</div>
+<table class="table table-stripped">
+    <tr>
+        <th>Nik</th>
+        <th>Nama</th>
+        <th>Alamat</th>
+        <th>Jurusan</th>
+        <th></th>
+    </tr>
+    @foreach(var data in Model){
+        <tr>
+        <td>@data.Nik</td>
+        <td>@data.Nama</td>
+        <td>@data.Alamat</td>
+        <td>@data.Jurusan</td>
+        <td><a asp-action="Details" asp-route-id="@data.Nik">edit</a></td>
+        <td><a asp-action="Delete" asp-route-id="@data.Nik">delete</a></td>
+        </tr>
+    }
+</table>
+</div>

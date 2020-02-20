@@ -1,0 +1,52 @@
+@model IEnumerable<SampleASPCore.Models.Artikel>
+@{
+    Layout = "_Layout";
+}
+ <h2>Daftar Artikel</h2><br/><br/>
+ <a asp-action="Create" class="btn btn-success">Tambah Data</a>
+ <br/>
+<div class="row">
+@if(ViewData["pesan"]!=null){
+    @Html.Raw(ViewData["pesan"])
+}
+<br/><br/>
+</div>
+<div class="row">
+
+    <form asp-action="Search" class="form-inline">
+        <div class="form-group">
+            <label for="keyword">Search by :  </label> &nbsp;
+            <input type="radio" name="pilih" value="ArtikelID" class="form-control"/>ID  &nbsp;
+            <input type="radio" name="pilih" value="Judul" class="form-control"/>Judul  &nbsp;
+            <input type="radio" name="pilih" value="Username" class="form-control"/>Penulis  &nbsp;
+            <input type="text" name="keyword" class="form-control" placeholder="Masukkan Keyword" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form><br/><br/>
+
+<table class="table table-stripped">
+    <tr>
+        <th>ID Artikel</th>
+        <th>ID Kategori</th>
+        <th>Judul Artikel</th>
+        <th>Berita</th>
+        <th>Tanggal</th>
+        <th>Gambar</th>
+        <th>Username</th>
+        <th></th>
+    </tr>
+    @foreach(var data in Model){
+        <tr>
+        <td>@data.ArtikelID</td>
+        <td>@data.KategoriID</td>
+        <td>@data.Judul</td>
+        <td>@data.Berita</td>
+        <td>@data.Tanggal</td>
+        <td>@data.Gambar</td>
+        <td>@data.Username</td>
+        <td><a asp-action="Details" asp-route-id="@data.ArtikelID">edit</a></td>
+        <td><a asp-action="Delete" asp-route-id="@data.ArtikelID">delete</a></td>
+        </tr>
+    }
+</table>
+</div>

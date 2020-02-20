@@ -1,0 +1,41 @@
+@model IEnumerable<SampleASPCore.Models.Kategori>
+@{
+    Layout = "_Layout";
+}
+ <h2>Daftar Kategori</h2><br/><br/>
+ <a asp-action="Create" class="btn btn-success">Tambah Data</a>
+ <br/>
+<div class="row">
+@if(ViewData["pesan"]!=null){
+    @Html.Raw(ViewData["pesan"])
+}
+<br/><br/>
+</div>
+<div class="row">
+
+    <form asp-action="Search" class="form-inline">
+        <div class="form-group">
+            <label for="keyword">Search by :  </label> &nbsp;
+            <input type="radio" name="pilih" value="KategoriID" class="form-control"/>ID  &nbsp;
+            <input type="radio" name="pilih" value="KategoriName" class="form-control"/>Nama  &nbsp;
+            <input type="text" name="keyword" class="form-control" placeholder="Masukkan Keyword" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form><br/><br/>
+
+<table class="table table-stripped">
+    <tr>
+        <th>ID Kategori</th>
+        <th>Nama Kategori</th>
+        <th></th>
+    </tr>
+    @foreach(var data in Model){
+        <tr>
+        <td>@data.KategoriID</td>
+        <td>@data.KategoriName</td>
+        <td><a asp-action="Details" asp-route-id="@data.KategoriID">edit</a></td>
+        <td><a asp-action="Delete" asp-route-id="@data.KategoriID">delete</a></td>
+        </tr>
+    }
+</table>
+</div>

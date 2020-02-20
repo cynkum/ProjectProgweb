@@ -1,0 +1,57 @@
+@model SampleASPCore.Models.Pengguna;
+@{
+    Layout = "_Layout";
+}
+
+<h2>Form Registrasi</h2>
+<div class="row">
+@if(ViewData["pesan"]!=null){
+    @Html.Raw(ViewData["pesan"])
+}
+<br><br/>
+</div>
+
+<div class="col-md-6">
+    <form asp-action="Registrasi">
+        <div asp-validation-summary="ModelOnly" class="text-danger"/>
+        <div class="form-group">
+            <label asp-for="Username" class="control-label">Username</label>
+            <input asp-for="Username" type="text" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label">Password</label>
+            <input asp-for="Password" type="text" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label">Repassword</label>
+            <input asp-for="Password" type="text" class="form-control" />
+            <span asp-validation-for="Repassword" class="text-danger"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Aturan" class="control-label">Aturan</label>
+            <input asp-for="Aturan" type="text" class="form-control" />
+            <span asp-validation-for="Aturan" class="text-danger"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nama" class="control-label">Nama</label>
+            <input asp-for="Nama" type="text" class="form-control" />
+            <span asp-validation-for="Nama" class="text-danger"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telp" class="control-label">Telp</label>
+            <input asp-for="Telp" type="text" class="form-control" />
+            <span asp-validation-for="Telp" class="text-danger"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn-btn-primary"/>
+        </div>
+        
+    </form>
+</div>  
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
